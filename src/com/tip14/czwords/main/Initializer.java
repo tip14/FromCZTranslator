@@ -7,13 +7,13 @@ import com.tip14.czwords.translators.WordTranslator;
 
 public class Initializer {
 
-	Scanner scn = new Scanner(System.in);
-	FileTranslator ft;
+	private Scanner scn = new Scanner(System.in);
+	private FileTranslator ft;
 	WordTranslator wt;
 
 	public void initMenu() {
-		System.out.println("[w] - for translation one word");
-		System.out.println("[f] - for translation whole file");
+		System.out.println("[w] - translate one word");
+		System.out.println("[f] - translate whole file");
 		System.out.println("[e] - exit");
 		while (true) {
 			System.out.println("your choice:");
@@ -27,6 +27,8 @@ public class Initializer {
 			case "e":
 				System.exit(0);
 				break;
+				default:
+					System.out.println("invalid command!");
 			}
 		}
 	}

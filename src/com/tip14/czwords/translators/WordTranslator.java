@@ -36,6 +36,6 @@ public class WordTranslator {
 		} catch (NullPointerException e) {
 			System.out.println("NPE catched");
 		}
-		return null;
+		return "can't be translated :{";
 	}
 }

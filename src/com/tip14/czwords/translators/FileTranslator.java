@@ -32,11 +32,11 @@ public class FileTranslator {
 				this.delimiter = delimiter;
 			}
 		} catch (FileExistsException e) {
-			System.out.println("FileWithWordsToTranslate doesn't exist!");
+			e.tryAgain();
 		} catch (InvalidFilePathException e) {
-			System.out.println("It's directory, i need a file!");
+			e.tryAgain();
 		} catch (BackslashInPathException e) {
-			System.out.println("Please, use only slashes in path");
+			e.tryAgain();
 		}
 
 	}
