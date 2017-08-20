@@ -9,7 +9,7 @@ public class Initializer {
 
 	private Scanner scn = new Scanner(System.in);
 	private FileTranslator ft;
-	WordTranslator wt;
+	private WordTranslator wt;
 
 	public void initMenu() {
 		System.out.println("[w] - translate one word");
@@ -27,25 +27,25 @@ public class Initializer {
 			case "e":
 				System.exit(0);
 				break;
-				default:
-					System.out.println("invalid command!");
+			default:
+				System.out.println("invalid command!");
 			}
 		}
 	}
 
-	public void initFileTranslator() {
-		System.out.println("Enter path to file with words:");
+	private void initFileTranslator() {
+		System.out.println("Path to file with words:");
 		String fileToTranslatingPath = scn.next();
-		System.out.println("Enter path to file to translate in:");
+		System.out.println("Path to file to translate in:");
 		String pathToTranslatedFile = scn.next();
-		System.out.println("Enter delimiters:");
+		System.out.println("Delimiters:");
 		String delimiter = scn.next();
 
 		ft = new FileTranslator(fileToTranslatingPath, pathToTranslatedFile, delimiter);
 		ft.translateFile();
 	}
 
-	public void initWordTranslator() {
+	private void initWordTranslator() {
 		wt = new WordTranslator();
 		System.out.println("Enter cz-word to translate: ");
 		String translatedWord = wt.translate(scn.next());

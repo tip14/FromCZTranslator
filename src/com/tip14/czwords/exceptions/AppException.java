@@ -10,8 +10,10 @@ public class AppException extends Exception{
 	}
 	
 	public void tryAgain(){
-		System.out.println(message);
-		System.out.println("try again....");
-		new Initializer().initFileTranslator();
+		Initializer i = new Initializer();
+		i.initMenu();
+		
 	}
+	
+	
 }
