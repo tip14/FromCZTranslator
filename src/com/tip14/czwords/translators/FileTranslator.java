@@ -61,6 +61,7 @@ public class FileTranslator {
 				}
 			}
 			fileWriter.flush();
+			fileWriter.close();
 			System.out.println("Translation is succesfully end");
 		} catch (FileNotFoundException e) {
 			System.out.println("FileNotFoundException cathced");

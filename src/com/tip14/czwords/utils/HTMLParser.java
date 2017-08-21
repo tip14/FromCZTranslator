@@ -9,7 +9,7 @@ public class HTMLParser {
 	private Document doc;
 	private Element translationsBlock;
 	private Elements translatedWords;
-	private StringBuilder translatedWordsString;
+	private StringBuilder translatedWordsString = new StringBuilder();
 
 	public String getTranslations(String wordToTranslate) {
 		doc = Connector.getDocument(wordToTranslate);
