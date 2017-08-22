@@ -1,5 +1,6 @@
 package com.tip14.czwords.main;
 
+import java.io.File;
 import java.util.Scanner;
 
 import com.tip14.czwords.translators.FileTranslator;
@@ -36,19 +37,15 @@ public class Initializer {
 	private void initFileTranslator() {
 		System.out.println("Path to file with words:");
 		String fileToTranslatingPath = scn.next();
-		System.out.println("Path to file to translate in:");
-		String pathToTranslatedFile = scn.next();
-		System.out.println("Delimiters:");
-		String delimiter = scn.next();
 
-		ft = new FileTranslator(fileToTranslatingPath, pathToTranslatedFile, delimiter);
-		ft.translateFile();
+		ft = new FileTranslator();
+		ft.translateFileToFile(new File(fileToTranslatingPath));
 	}
 
 	private void initWordTranslator() {
 		wt = new WordTranslator();
 		System.out.println("Enter cz-word to translate: ");
-		String translatedWord = wt.translate(scn.next());
+		String translatedWord = wt.translateWord(scn.next());
 		System.out.println(translatedWord);
 	}
 }

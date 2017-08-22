@@ -6,7 +6,7 @@ public class WordTranslator {
 	
 	private static final HTMLParser HTMLPARSER = new HTMLParser();
 
-	public String translate(String wordToTranslate) {
+	public String translateWord(String wordToTranslate) {
 
 		return HTMLPARSER.getTranslations(wordToTranslate);
 	}

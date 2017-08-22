@@ -1,88 +1,58 @@
 package com.tip14.czwords.translators;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
-import com.tip14.czwords.exceptions.BackslashInPathException;
-import com.tip14.czwords.exceptions.FileExistsException;
-import com.tip14.czwords.exceptions.InvalidFilePathException;
+import com.tip14.czwords.utils.FileWorker;
 
-public class FileTranslator {
-	private File translatedWordsList;
-	private Scanner scn;
-	private FileWriter fileWriter;
-	private String s;
-	private String nextWordInFront;
-	private String translatedWord;
-	private WordTranslator wordTranslator = new WordTranslator();
-	private String pathToFileWithWordsToTranslate;
-	private String pathToFileWithTranslatedWords;
-	private String delimiter;
+public class FileTranslator extends WordTranslator {
 
-	public FileTranslator(String pathToFileWithWordsToTranslate, String pathToFileWithTranslatedWords,
-			String delimiter) {
+	private FileWorker fw = new FileWorker();
+	private BufferedReader br;
 
-		try {
-			if (pathCheck(pathToFileWithWordsToTranslate)) {
-				this.pathToFileWithWordsToTranslate = pathToFileWithWordsToTranslate;
-				this.pathToFileWithTranslatedWords = pathToFileWithTranslatedWords;
-				this.delimiter = delimiter;
+	public void translateFileToConsole(File file) {
+
+		br = fw.getBufferedReader(file);
+
+		String word = null;
+		String translatedWord = null;
+
+		while (true) {
+			try {
+				word = br.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (FileExistsException e) {
-			e.tryAgain();
-		} catch (InvalidFilePathException e) {
-			e.tryAgain();
-		} catch (BackslashInPathException e) {
-			e.tryAgain();
+			if (word == null)
+				break;
+			translatedWord = translateWord(word);
+			System.out.println(translatedWord);
 		}
 
 	}
 
-	public void translateFile() {
-		try {
-			scn = new Scanner(new File(pathToFileWithWordsToTranslate));
-			scn.useDelimiter(delimiter);
+	public void translateFileToFile(File file) {
+		br = fw.getBufferedReader(file);
 
-			translatedWordsList = new File(pathToFileWithTranslatedWords);
-			fileWriter = new FileWriter(translatedWordsList);
+		String word = null;
+		String translatedWord = null;
 
-			int wordCount = 0;
-			while (scn.hasNext()) {
-				nextWordInFront = scn.next();
-				translatedWord = wordTranslator.translate(nextWordInFront);
-				if (translatedWord != null) {
-					++wordCount;
-					s = wordCount + ". " + nextWordInFront + " — " + translatedWord + "\n";
-					fileWriter.write(s);
-					System.out.println(wordCount + " translated");
-				}
+		while (true) {
+			try {
+				word = br.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			fileWriter.flush();
-			fileWriter.close();
-			System.out.println("Translation is succesfully end");
-		} catch (FileNotFoundException e) {
-			System.out.println("FileNotFoundException cathced");
-		} catch (IOException e) {
-			System.out.println("IOException catched");
+			if (word == null)
+				break;
+			translatedWord = translateWord(word);
+			fw.writeToFile(translatedWord);
+			
 		}
 
 	}
 
-	private boolean pathCheck(String path1)
-			throws FileExistsException, InvalidFilePathException, BackslashInPathException {
-		File fl1 = new File(path1);
-
-		if (!fl1.exists()) {
-			throw new FileExistsException();
-		} else if (!fl1.isDirectory()) {
-			throw new InvalidFilePathException();
-		} else if (path1.contains("\\")) {
-			throw new BackslashInPathException();
-		}
-
-		return true;
-	}
 }

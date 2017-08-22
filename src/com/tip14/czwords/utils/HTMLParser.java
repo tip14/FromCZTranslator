@@ -13,7 +13,7 @@ public class HTMLParser {
 
 	public String getTranslations(String wordToTranslate) {
 		doc = Connector.getDocument(wordToTranslate);
-
+		translatedWordsString.setLength(0);
 		translationsBlock = doc.getElementById("fastMeanings");
 		translatedWords = translationsBlock.getElementsByTag("a");
 
