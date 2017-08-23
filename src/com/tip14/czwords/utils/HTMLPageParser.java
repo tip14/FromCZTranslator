@@ -4,7 +4,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class HTMLParser {
+public class HTMLPageParser {
 
 	private Document doc;
 	private Element translationsBlock;
@@ -12,7 +12,7 @@ public class HTMLParser {
 	private StringBuilder translatedWordsString = new StringBuilder();
 
 	public String getTranslations(String wordToTranslate) {
-		doc = Connector.getDocument(wordToTranslate);
+		doc = HTMLPageConnector.getDocument(wordToTranslate);
 		translatedWordsString.setLength(0);
 		translationsBlock = doc.getElementById("fastMeanings");
 		translatedWords = translationsBlock.getElementsByTag("a");

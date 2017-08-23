@@ -1,17 +1,14 @@
 package com.tip14.czwords.translators;
 
-import com.tip14.czwords.utils.HTMLParser;
+import com.tip14.czwords.utils.HTMLPageParser;
 
 public class WordTranslator {
-	
-	private static final HTMLParser HTMLPARSER = new HTMLParser();
+
+	private static final HTMLPageParser HTML_PAGE_PARSER = new HTMLPageParser();
 
 	public String translateWord(String wordToTranslate) {
 
-		return HTMLPARSER.getTranslations(wordToTranslate);
+		return HTML_PAGE_PARSER.getTranslations(wordToTranslate);
 	}
-	
-	
-	
-	
+
 }
