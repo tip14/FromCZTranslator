@@ -11,6 +11,14 @@ public class HTMLPageParser {
 	private Elements translatedWords;
 	private StringBuilder translatedWordsString = new StringBuilder();
 
+	/**
+	 * Method gets page from {@link HTMLPageConnector} and parse it
+	 * for searching available translations of the specified word.
+	 * Returns all available translations with formatting like String.
+	 * 
+	 * @param wordToTranslate word that need to be translated
+	 * @return String possible translation in String
+	 */
 	public String getTranslations(String wordToTranslate) {
 		doc = HTMLPageConnector.getDocument(wordToTranslate);
 		translatedWordsString.setLength(0);
